@@ -13,7 +13,7 @@ const theme = createTheme({
 
 const ProviderOptions: MantineProviderProps = {
     theme,
-    defaultColorScheme: 'dark',
+    defaultColorScheme: 'light',
     withCssVariables: true,
 };
 

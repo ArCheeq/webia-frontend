@@ -12,7 +12,7 @@ export interface IAuthState {
 
 export const createAuthStore: IStateSlice<IAuthState> = (set) => ({
     authKey: '',
-    isAuthorized: false,
+    isAuthorized: true,
 
     setAuthKey: (authKey) => set((state) => {
 		state.auth.authKey = authKey;
