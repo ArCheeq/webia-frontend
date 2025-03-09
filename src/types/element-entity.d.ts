@@ -132,5 +132,5 @@ type StringifiedHtmlProps = NonFunctionHtmlProps & StringifiedFunctionProps;
 interface IElementEntity {
 	type: HtmlTagNames | string;
 	props?: StringifiedHtmlProps;
-	children: Array<string | IElementEntity>;
+	children?: Array<string | IElementEntity>;
 }

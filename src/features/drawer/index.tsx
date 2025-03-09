@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Accordion, Button, Drawer, Stack, Text, Textarea, TextInput } from "@mantine/core";
 
-import {isStringNode, logger, splitCamelCase} from "@/lib";
+import { isStringNode, logger, splitCamelCase } from "@/lib";
 import { useStore } from "@/store";
 
 
@@ -59,6 +59,29 @@ export default function SectionDrawer() {
 		);
 	};
 
+	const renderImageSourceSection = () => {
+		const imageSource = element?.props?.src;
+
+		if (!imageSource) return null;
+
+		return (
+			<Accordion.Item value={'image-source'}>
+				<Accordion.Control>
+					<Text fw={500}>Image Source</Text>
+				</Accordion.Control>
+				<Accordion.Panel>
+					<Stack>
+						<TextInput
+							label={'Source'}
+							placeholder={'Source'}
+							value={imageSource}
+						/>
+					</Stack>
+				</Accordion.Panel>
+			</Accordion.Item>
+		);
+	};
+
 	const renderTextContentSection = () => {
 		if (!Array.isArray(element?.children)) return null;
 
@@ -96,6 +119,7 @@ export default function SectionDrawer() {
 			<Accordion chevronPosition="right" variant={'separated'}>
 				{renderStylesSection()}
 				{renderTextContentSection()}
+				{renderImageSourceSection()}
 			</Accordion>
 			<Button onClick={close} className={'w-full mt-auto'}>
 				Save Changes

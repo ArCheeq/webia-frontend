@@ -27,7 +27,42 @@ export const mockLayout: IElementEntity = {
 				},
 			},
 			children: [
-				'Header Title',
+				{
+					type: 'a',
+					props: {
+						id: 'header-link',
+						href: 'https://via.placeholder.com/30',
+						style: {
+							display: 'flex',
+							alignItems: 'center',
+							gap: '10px'
+						},
+					},
+					children: [
+						{
+							type: 'img',
+							props: {
+								id: 'logo',
+								src: 'https://placehold.co/30',
+								alt: 'Placeholder Icon',
+								style: {
+									width: '30px',
+									height: '30px',
+									objectFit: 'cover',
+								},
+							},
+						},
+						{
+							type: 'span',
+							props: {
+								id: 'logo-name',
+							},
+							children: [
+								'Header Title'
+							]
+						}
+					],
+				},
 				{
 					type: 'button',
 					props: {
