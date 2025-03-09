@@ -1,8 +1,9 @@
 
 // Expanded mock response from AI as a full DOM tree
-export const mockLayout = {
+export const mockLayout: IElementEntity = {
 	type: 'div',
 	props: {
+		id: 'root',
 		style: {
 			display: 'grid',
 			gridTemplateColumns: '200px 1fr',
@@ -15,6 +16,7 @@ export const mockLayout = {
 		{
 			type: 'header',
 			props: {
+				id: 'header',
 				style: {
 					gridColumn: '1 / span 2',
 					backgroundColor: '#333',
@@ -29,6 +31,7 @@ export const mockLayout = {
 				{
 					type: 'button',
 					props: {
+						id: 'header-button',
 						style: {
 							backgroundColor: '#ff5733',
 							color: '#fff',
@@ -45,6 +48,7 @@ export const mockLayout = {
 		{
 			type: 'aside',
 			props: {
+				id: 'aside',
 				style: {
 					backgroundColor: '#f0f0f0',
 					padding: '10px',
@@ -56,6 +60,7 @@ export const mockLayout = {
 		{
 			type: 'main',
 			props: {
+				id: 'main',
 				style: {
 					padding: '10px',
 				},
@@ -63,17 +68,22 @@ export const mockLayout = {
 			children: [
 				{
 					type: 'h1',
-					props: {},
+					props: {
+						id: 'main-header',
+					},
 					children: ['Main Section'],
 				},
 				{
 					type: 'p',
-					props: {},
+					props: {
+						id: 'main-description',
+					},
 					children: ['Some interesting content goes here...'],
 				},
 				{
 					type: 'button',
 					props: {
+						id: 'main-button',
 						style: {
 							marginTop: '10px',
 							padding: '8px 16px',
@@ -91,6 +101,7 @@ export const mockLayout = {
 		{
 			type: 'footer',
 			props: {
+				id: 'footer',
 				style: {
 					gridColumn: '1 / span 2',
 					backgroundColor: '#333',

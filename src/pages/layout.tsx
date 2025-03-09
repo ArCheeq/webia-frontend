@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import { Outlet } from 'react-router-dom';
 
+import SectionDrawer from "@/features/drawer";
 import Footer from "@/features/footer";
 import Header from "@/features/header";
 
@@ -11,6 +12,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
 				<Header />
                 <div className="flex flex-col overflow-y-auto h-full min-h-[calc(100vh-116px)]">{children || <Outlet />}</div>
 				<Footer />
+				<SectionDrawer />
             </div>
         </div>
     );

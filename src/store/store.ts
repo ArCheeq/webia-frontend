@@ -5,9 +5,11 @@ import { immer } from 'zustand/middleware/immer';
 
 import { isProd } from '@/constants/env';
 import { createAuthStore, IAuthState } from '@/store/states/auth';
+import { createDrawerStore, IDrawerState } from "@/store/states/drawer";
 
 export interface IStore {
     auth: IAuthState;
+	drawer: IDrawerState;
 }
 
 export const store = createStore<IStore>()(
@@ -15,6 +17,7 @@ export const store = createStore<IStore>()(
         devtools(
             (...a) => ({
                 auth: createAuthStore(...a),
+				drawer: createDrawerStore(...a),
             }),
             { enabled: !isProd(), name: 'APP (DEV)' },
         ),

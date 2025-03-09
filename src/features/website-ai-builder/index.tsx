@@ -1,38 +1,33 @@
-// import React, { useCallback,useState } from 'react';
-//
-// const AIWebsiteBuilder = () => {
-// 	const [domTree, setDomTree] = useState(mockResponse);
-//
-// 	const parseFunction = useCallback((fnString) => {
-// 		try {
-//
-// 			return new Function('return ' + fnString)();
-// 		} catch (e) {
-// 			console.error('Failed to parse function:', fnString);
-// 			return undefined;
-// 		}
-// 	}, []);
-//
-// 	const renderElement = (element) => {
-// 		const { type, props, children } = element;
-// 		const parsedProps = { ...props };
-//
-// 		// Convert string-based functions into executable functions
-// 		Object.keys(parsedProps).forEach((key) => {
-// 			if (typeof parsedProps[key] === 'string' && parsedProps[key].startsWith('() =>')) {
-// 				parsedProps[key] = parseFunction(parsedProps[key]);
-// 			}
-// 		});
-//
-// 		return React.createElement(
-// 			type,
-// 			parsedProps,
-// 			children?.map((child) => typeof child === 'string' ? child : renderElement(child)
-// 			)
-// 		);
-// 	};
-//
-// 	return <div className='p-4'>{renderElement(domTree)}</div>;
-// };
-//
-// export default AIWebsiteBuilder;
+import React, { ReactNode, useState } from 'react';
+
+import { mockLayout } from "@/features/website-ai-builder/mock";
+import { isStringNode, parseProps } from "@/lib";
+import { useStore } from "@/store";
+
+const AIWebsiteBuilder = () => {
+	const [domTree] = useState(mockLayout);
+	const open = useStore(state => state.drawer.open);
+
+	const renderElement = (element: IElementEntity) => {
+		const { type, props, children } = element;
+
+		// Convert string-based functions into executable functions
+		const parsedProps = parseProps(props);
+
+		const onClick = (e: MouseEvent) => {
+			e.preventDefault();
+			e.stopPropagation();
+
+			open(element);
+		};
+
+		return React.createElement(
+			type,
+			{...parsedProps, onClick},
+			children?.map((child): ReactNode => isStringNode(child) ? child : renderElement(child)));
+	};
+
+	return <div className='p-4'>{renderElement(domTree)}</div>;
+};
+
+export default AIWebsiteBuilder;

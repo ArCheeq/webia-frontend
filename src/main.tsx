@@ -8,8 +8,7 @@ import Router from '@/router';
 import '@/lib/dayjs';
 import './endpoints.config';
 
-import '@mantine/core/styles.layer.css';
-import '@mantine/dates/styles.layer.css';
+import '@mantine/core/styles.css';
 import '@/assets/styles/base.css';
 
 function bootstrap() {
